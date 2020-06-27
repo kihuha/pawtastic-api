@@ -15,12 +15,8 @@ const typeDefs = gql`
     firstName: String
     lastName: String
     city: String
-    created: Float
-    updated: Float
-  }
-
-  type Error {
-    error: String
+    createdAt: String
+    updatedAt: String
   }
 
   type Query {
