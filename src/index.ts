@@ -110,10 +110,8 @@ const resolvers = {
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context({ req }: any) {
-    const token = req.headers.authorization
-    return token
-  },
+  introspection: true,
+  playground: true,
 })
 const app = express()
 server.applyMiddleware({ app })
