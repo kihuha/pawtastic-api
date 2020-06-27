@@ -9,6 +9,7 @@
     "@types/node": "^14.0.14",
     "apollo-server-express": "^2.15.0",
     "bcrypt": "^5.0.0",
+    "env-cmd": "^10.1.0",
     "mongoose": "^5.9.20",
     "typescript": "^3.9.5"
   },
@@ -23,7 +24,7 @@
     "trailingComma": "es5"
   },
   "scripts": {
-    "dev": "nodemon dist/index.js",
+    "dev": "env-cmd nodemon dist/index.js",
     "build": "tsc",
     "start": "yarn build && node dist/index.js"
   }

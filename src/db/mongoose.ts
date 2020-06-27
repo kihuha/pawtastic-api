@@ -1,6 +1,6 @@
 import mongoose from "mongoose"
 
-mongoose.connect("mongodb://localhost/pawtastic", {
+mongoose.connect(`${process.env.DATABASE_URL}`, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
