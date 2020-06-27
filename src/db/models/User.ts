@@ -12,45 +12,43 @@ interface IUser extends mongoose.Document {
   created: Date
 }
 
-const UserSchema = new Schema({
-  email: {
-    type: String,
-    unique: true,
-    required: true,
+const UserSchema = new Schema(
+  {
+    email: {
+      type: String,
+      unique: true,
+      required: true,
+    },
+    password: {
+      type: String,
+      unique: true,
+      required: true,
+    },
+    firstName: {
+      type: String,
+      required: true,
+    },
+    lastName: {
+      type: String,
+      required: true,
+    },
+    phone: {
+      type: String,
+      unique: true,
+      required: true,
+    },
+    phoneAlt: String,
+    city: {
+      type: String,
+      required: true,
+    },
   },
-  password: {
-    type: String,
-    unique: true,
-    required: true,
-  },
-  firstName: {
-    type: String,
-    required: true,
-  },
-  lastName: {
-    type: String,
-    required: true,
-  },
-  phone: {
-    type: String,
-    unique: true,
-    required: true,
-  },
-  phoneAlt: String,
-  city: {
-    type: String,
-    required: true,
-  },
-  created: {
-    type: Date,
-  },
-})
+  {
+    timestamps: true,
+  }
+)
 
 UserSchema.pre<IUser>("save", async function (next) {
-  if (!this.created) {
-    this.created = new Date()
-  }
-
   if (this.isModified("password")) {
     this.password = await bcrypt.hash(this.password, 8)
   }
