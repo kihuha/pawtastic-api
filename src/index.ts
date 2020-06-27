@@ -1,4 +1,5 @@
-import { ApolloServer, gql, UserInputError } from "apollo-server"
+import express from "express"
+import { ApolloServer, gql, UserInputError } from "apollo-server-express"
 import "./db/mongoose"
 import User from "./db/models/User"
 
@@ -114,7 +115,11 @@ const server = new ApolloServer({
     return token
   },
 })
+const app = express()
+server.applyMiddleware({ app })
 
-server.listen(port).then(({ url }: any) => {
-  return `🚀 Server is running on ${url}`
-})
+app.listen({ port }, () =>
+  console.log(
+    `🚀 Server ready at http://localhost:${port}${server.graphqlPath}`
+  )
+)
